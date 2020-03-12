@@ -1,0 +1,27 @@
+{
+  "name": "diploma",
+  "version": "1.0.0",
+  "description": "Diploma",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZhenyaBerda/diploma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZhenyaBerda/diploma/issues"
+  },
+  "homepage": "https://github.com/ZhenyaBerda/diploma#readme",
+  "devDependencies": {
+    "path": "^0.12.7",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
