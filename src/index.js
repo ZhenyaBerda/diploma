@@ -13,7 +13,7 @@ toggleMenu();
 togglePhones();
 // окрытие модального окна 'popup-repair-types'
 togglePopupRepair();
-//проверка вводимых значений (еще не сделано :с)
+//проверка вводимых значений и отправка данных (в процессе)
 sendForm();
 // открытие окна с политикой
 togglePopupPrivacy();
