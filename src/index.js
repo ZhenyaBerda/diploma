@@ -3,7 +3,7 @@
 import toggleMenu from './modules/toggleMenu';
 import togglePhones from './modules/togglePhones';
 
-// меню бургер (пока не сделан :с)
+// меню бургер
 toggleMenu();
 // реализация открытия второго номера
 togglePhones();
