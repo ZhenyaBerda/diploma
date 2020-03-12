@@ -4,6 +4,7 @@ import toggleMenu from './modules/toggleMenu';
 import togglePhones from './modules/togglePhones';
 import togglePopupRepair from './modules/togglePopupRepair';
 import checkInput from './modules/checkInput';
+import togglePopupPrivacy from './modules/togglePopupPrivacy';
 import SliderCarousel from './modules/SliderCarousel';
 
 // меню бургер
@@ -14,6 +15,8 @@ togglePhones();
 togglePopupRepair();
 //проверка вводимых значений (еще не сделано :с)
 checkInput();
+// открытие окна с политикой
+togglePopupPrivacy();
 
 // слайдер-карусель
 
@@ -25,18 +28,15 @@ const carousel = new SliderCarousel({
     prev: '#partners-arrow_left',
     slidesToShow: 3,
     infinity: true,
-    responsive: [{
-        breakpoint: 1024,
-        slideToShow: 3
-    },
-    {
-        breakpoint: 768,
-        slideToShow: 2
-    },
-    {
-        breakpoint: 576,
-        slideToShow: 1
-    }
+    responsive: [
+        {
+            breakpoint: 768,
+            slideToShow: 2
+        },
+        {
+            breakpoint: 575,
+            slideToShow: 1
+        }
     ],
 });
 

@@ -62,21 +62,21 @@ class SliderCarousel {
         }
 
         style.textContent = `
-.glo-slider {
-    overflow: hidden  !important;
-}
-.glo-slider__wrap {
-    display: flex !important;
-    transition: transform 0.5s !important;
-    will-change: transform !important;
-}
-.glo-slider__item {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 ${this.options.widthSlide}% !important;
-    margin: auto 0 !important; 
-}
+        .glo-slider {
+            overflow: hidden  !important;
+        }
+        .glo-slider__wrap {
+            display: flex !important;
+            transition: transform 0.5s !important;
+            will-change: transform !important;
+        }
+        .glo-slider__item {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 ${this.options.widthSlide}% !important;
+            margin: auto 0 !important; 
+        }
 `;
         document.head.appendChild(style);
     }
@@ -120,7 +120,7 @@ class SliderCarousel {
 
         const style = document.createElement('style');
         style.textContent = `
-        .glo-slider__prev,
+               .glo-slider__prev,
         .glo-slider__next {
             margin: 0 10px;
             border: 20px solid transparent;

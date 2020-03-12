@@ -15,7 +15,6 @@ const togglePopupRepair = () => {
             if (menuDialog.classList.contains('showHide-menu')) {
                 menuDialog.classList.remove('showHide-menu');
                 popupMenu.style.visibility = 'hidden';
-
             }
             return;
         }
