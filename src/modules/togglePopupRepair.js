@@ -17,11 +17,14 @@ const togglePopupRepair = () => {
                 popupMenu.style.visibility = 'hidden';
 
             }
+            return;
         }
 
-        if (target.closest('.close')) {
+        //закрываем окно
+        if (target.closest('.close') || !target.closest('.popup-dialog-repair-types')) {
             popupRepair.style.visibility = 'hidden';
         }
+
     });
 };
 
