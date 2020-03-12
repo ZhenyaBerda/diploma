@@ -3,7 +3,7 @@
 import toggleMenu from './modules/toggleMenu';
 import togglePhones from './modules/togglePhones';
 import togglePopupRepair from './modules/togglePopupRepair';
-import checkInput from './modules/checkInput';
+import sendForm from './modules/sendForm';
 import togglePopupPrivacy from './modules/togglePopupPrivacy';
 import SliderCarousel from './modules/SliderCarousel';
 
@@ -14,7 +14,7 @@ togglePhones();
 // окрытие модального окна 'popup-repair-types'
 togglePopupRepair();
 //проверка вводимых значений (еще не сделано :с)
-checkInput();
+sendForm();
 // открытие окна с политикой
 togglePopupPrivacy();
 
