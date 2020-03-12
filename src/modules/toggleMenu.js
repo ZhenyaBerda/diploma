@@ -26,6 +26,32 @@ const toggleMenu = () => {
             popupMenu.style.visibility = 'hidden';
             handlerMenu();
         }
+
+        // реализация scroll
+        // если нажали на элемент меню => переходит в нужную часть + закрываем меню
+        if (target.closest('.popup-menu-nav__item')) {
+            event.preventDefault();
+            popupMenu.style.visibility = 'hidden';
+            handlerMenu();
+            const href = target.getAttribute('href');
+
+            document.querySelector(`${href}`).scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+
+            return;
+        }
+
+        if (target.closest('.button-footer')) {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
     });
 };
 
