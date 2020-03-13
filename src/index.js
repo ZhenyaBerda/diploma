@@ -6,6 +6,7 @@ import togglePopupRepair from './modules/togglePopupRepair';
 import sendForm from './modules/sendForm';
 import togglePopupPrivacy from './modules/togglePopupPrivacy';
 import SliderCarousel from './modules/SliderCarousel';
+import hints from './modules/hints';
 
 // меню бургер
 toggleMenu();
@@ -17,6 +18,8 @@ togglePopupRepair();
 sendForm();
 // открытие окна с политикой
 togglePopupPrivacy();
+// показ подсказок
+hints();
 
 // слайдер-карусель
 
