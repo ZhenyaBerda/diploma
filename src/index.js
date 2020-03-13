@@ -8,6 +8,7 @@ import togglePopupPrivacy from './modules/togglePopupPrivacy';
 import togglePopupConsultation from './modules/togglePopupConsultation';
 import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
+import accordion from './modules/accordion';
 
 // меню бургер
 toggleMenu();
@@ -24,6 +25,8 @@ hints('formula');
 hints('problems');
 // окно-консультации
 togglePopupConsultation();
+//аккордеон
+accordion();
 
 
 
