@@ -20,13 +20,12 @@ sendForm();
 // открытие окна с политикой
 togglePopupPrivacy();
 // показ подсказок
-hints();
+hints('formula');
+hints('problems');
 // окно-консультации
 togglePopupConsultation();
 
 // слайдер-карусель
-
-
 const carousel = new SliderCarousel({
     main: '.partner-wrapper',
     wrap: '.partners-slider',
@@ -47,3 +46,6 @@ const carousel = new SliderCarousel({
 });
 
 carousel.init();
+
+// отзывы
+
