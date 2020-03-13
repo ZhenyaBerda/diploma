@@ -7,6 +7,9 @@ const hints = (block, rotate) => {
         const style = document.createElement('style');
         style.classList.add('hint-style');
         style.textContent = `
+        .active-row {
+            z-index: 999999999;
+        }
         .${hint.classList[hint.classList.length - 1]} {
             padding-top: 50px;
         }
@@ -25,6 +28,7 @@ const hints = (block, rotate) => {
 
         if (target.closest(`.${block}-item__icon`)) {
             target = target.closest(`.${block}-item__icon`);
+            target.closest('.row').classList.toggle('active-row');
 
             const item = target.closest(`.${block}-item`),
                 hint = item.querySelector(`.${block}-item-popup`);
@@ -52,6 +56,8 @@ const hints = (block, rotate) => {
         if (target.closest(`.${block}-item__icon`)) {
             const item = target.closest(`.${block}-item`),
                 hint = item.querySelector(`.${block}-item-popup`);
+
+            target.closest('.row').classList.toggle('active-row');
 
             hint.removeAttribute('style');
             if (document.head.querySelector('.hint-style')) {
