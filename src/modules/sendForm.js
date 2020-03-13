@@ -31,16 +31,6 @@ const sendForm = () => {
         }
     });
 
-    const postData = (body) => {
-
-        return fetch('./server.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        });
-    };
 
     const checkInputs = (form) => {
         const allInputs = form.querySelectorAll('input');
@@ -108,17 +98,31 @@ const sendForm = () => {
                     body[key] = val;
                 });
 
+                const postData = (body) => {
 
+                    return fetch('./server.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    });
+                };
+
+
+
+                statusMessage.textContent = '';
                 // отправляем данные
                 postData(body)
                     .then((response) => {
-                        console.log(response.status);
-                        if (response.status !== 200) {
-                            return;
+
+                        if (response && response.status !== 200) {
+                            throw new Error();
+                        } else {
+
+                            showPopupThank();
+                            form.reset();
                         }
-                        statusMessage.textContent = '';
-                        showPopupThank();
-                        form.reset();
 
                     })
                     .catch(() => statusMessage.textContent = 'Ошибка соединения');

@@ -11,7 +11,7 @@ const hints = (block, rotate) => {
             z-index: 999999999;
         }
         .${hint.classList[hint.classList.length - 1]} {
-            padding-top: 50px;
+            padding-top: 35px;
         }
         .${hint.classList[hint.classList.length - 1]}:before {
         -webkit-transform: rotate(180deg) !important;
@@ -19,7 +19,7 @@ const hints = (block, rotate) => {
     }`;
 
         document.head.appendChild(style);
-    }
+    };
 
 
 
@@ -27,43 +27,40 @@ const hints = (block, rotate) => {
         let target = event.target;
 
         if (target.closest(`.${block}-item__icon`)) {
-            target = target.closest(`.${block}-item__icon`);
-            target.closest('.row').classList.toggle('active-row');
-
             const item = target.closest(`.${block}-item`),
                 hint = item.querySelector(`.${block}-item-popup`);
 
             const coordElem = hint.getBoundingClientRect();
-            console.log(coordElem);
-            console.log(document.documentElement.clientHeight);
+            target.closest('.row').classList.add('active-row');
             // переворачиваем подсказки
             if (coordElem.top <= 0) {
                 hint.style.bottom = `-${coordElem.height + 20}px`;
                 addStyle(hint);
             }
 
-            hint.style.visibility = 'visible';
+            item.classList.add('active-item');
+            hint.style.visibility = 'visible'; 
             hint.style.opacity = 1;
-
         }
-
 
     });
 
     container.addEventListener('mouseout', (event) => {
-        const target = event.target;
+        let target = event.target;
 
         if (target.closest(`.${block}-item__icon`)) {
             const item = target.closest(`.${block}-item`),
                 hint = item.querySelector(`.${block}-item-popup`);
 
-            target.closest('.row').classList.toggle('active-row');
+            item.classList.remove('active-item');
+            target.closest('.row').classList.remove('active-row');
 
             hint.removeAttribute('style');
             if (document.head.querySelector('.hint-style')) {
                 document.head.querySelector('.hint-style').remove();
             }
         }
+
     });
 
 };

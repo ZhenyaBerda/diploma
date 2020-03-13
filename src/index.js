@@ -25,6 +25,10 @@ hints('problems');
 // окно-консультации
 togglePopupConsultation();
 
+
+
+    
+
 // слайдер-карусель
 const carousel = new SliderCarousel({
     main: '.partner-wrapper',
@@ -46,6 +50,4 @@ const carousel = new SliderCarousel({
 });
 
 carousel.init();
-
-// отзывы
 
