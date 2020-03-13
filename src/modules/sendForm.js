@@ -38,7 +38,6 @@ const sendForm = () => {
         let check = true;
 
         allInputs.forEach(input => {
-            console.log(input);
             if (input.matches('.checkbox__input') && !input.checked) {
                 check = false;
             }
@@ -122,7 +121,7 @@ const sendForm = () => {
                             throw new Error();
                         }
                     })
-                    .catch((error) => console.error(error));
+                    .catch(() => statusMessage.textContent = 'Ошибка отправки данных');
 
             } else {
                 statusMessage.textContent = 'Введите свои данные и согласитесь с политикой конфиденциальности';
