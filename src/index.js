@@ -5,6 +5,7 @@ import togglePhones from './modules/togglePhones';
 import togglePopupRepair from './modules/togglePopupRepair';
 import sendForm from './modules/sendForm';
 import togglePopupPrivacy from './modules/togglePopupPrivacy';
+import togglePopupConsultation from './modules/togglePopupConsultation';
 import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 
@@ -20,6 +21,8 @@ sendForm();
 togglePopupPrivacy();
 // показ подсказок
 hints();
+// окно-консультации
+togglePopupConsultation();
 
 // слайдер-карусель
 

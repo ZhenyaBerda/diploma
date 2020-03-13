@@ -77,11 +77,12 @@ const sendForm = () => {
     };
 
     const statusMessage = document.createElement('div');
-
+    statusMessage.classList.add('status');
     statusMessage.style.cssText = `color: red; text-align: center;`;
 
     // отлавливаем нажатие на нужные кнопки
     document.body.addEventListener('submit', (event) => {
+        event.preventDefault();
         statusMessage.textContent = '';
         const target = event.target;
 
@@ -111,13 +112,16 @@ const sendForm = () => {
                 // отправляем данные
                 postData(body)
                     .then((response) => {
+                        console.log(response.status);
                         if (response.status !== 200) {
-                            throw new Error('status network error');
+                            return;
                         }
+                        statusMessage.textContent = '';
                         showPopupThank();
                         form.reset();
+
                     })
-                    .catch(statusMessage.textContent = 'Ошибка соединения');
+                    .catch(() => statusMessage.textContent = 'Ошибка соединения');
 
             } else {
                 statusMessage.textContent = 'Введите свои данные и согласитесь с политикой конфиденциальности';
