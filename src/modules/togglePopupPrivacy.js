@@ -6,8 +6,7 @@ const togglePopupPrivacy = () => {
 
     document.body.addEventListener('click', (event) => {
         const target = event.target;
-        console.log(target);
-
+        
         // открываем окно
         if (target.closest('.link-privacy')) {
             popupPrivacy.style.visibility = 'visible';

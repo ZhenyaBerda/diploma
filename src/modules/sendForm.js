@@ -1,8 +1,8 @@
 'use strict';
 
 const sendForm = () => {
-    // id="input-phone"
 
+    // маска для ввеода телефона (не доделанная)
     document.body.addEventListener('input', (event) => {
         const target = event.target;
 
@@ -28,9 +28,10 @@ const sendForm = () => {
                 }
             });
 
-
         }
     });
+
+    
 
 };
 

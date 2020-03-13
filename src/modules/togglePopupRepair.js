@@ -2,6 +2,7 @@
 
 const togglePopupRepair = () => {
     const popupRepair = document.querySelector('.popup-repair-types'),
+
         menuDialog = document.querySelector('.popup-dialog-menu'),
         popupMenu = document.querySelector('.popup-menu');
 
