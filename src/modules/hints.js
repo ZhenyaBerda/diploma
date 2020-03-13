@@ -39,7 +39,7 @@ const hints = (block, rotate) => {
             }
 
             item.classList.add('active-item');
-            hint.style.visibility = 'visible'; 
+            hint.style.visibility = 'visible';
             hint.style.opacity = 1;
         }
 

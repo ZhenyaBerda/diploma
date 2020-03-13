@@ -66,6 +66,17 @@ const sendForm = () => {
         });
     };
 
+    const postData = (body) => {
+
+        return fetch('./server.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    };
+
     const statusMessage = document.createElement('div');
     statusMessage.classList.add('status');
     statusMessage.style.cssText = `color: red; text-align: center;`;
@@ -98,34 +109,20 @@ const sendForm = () => {
                     body[key] = val;
                 });
 
-                const postData = (body) => {
-
-                    return fetch('./server.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(body)
-                    });
-                };
-
-
 
                 statusMessage.textContent = '';
                 // отправляем данные
                 postData(body)
                     .then((response) => {
 
-                        if (response && response.status !== 200) {
-                            throw new Error();
-                        } else {
-
+                        if (response.status === 200) {
                             showPopupThank();
                             form.reset();
+                        } else {
+                            throw new Error();
                         }
-
                     })
-                    .catch(() => statusMessage.textContent = 'Ошибка соединения');
+                    .catch((error) => console.error(error));
 
             } else {
                 statusMessage.textContent = 'Введите свои данные и согласитесь с политикой конфиденциальности';
