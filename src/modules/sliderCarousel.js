@@ -7,7 +7,7 @@ class SliderCarousel {
         next,
         prev,
         position = 0,
-        slidesToShow = 3,
+        slidesToShow = 1,
         infinity = false,
         responsive = [],
     }) {
@@ -30,7 +30,7 @@ class SliderCarousel {
     }
 
     init() {
-
+        console.log(this.options.widthSlide, this.slidesToShow);
         this.addGloClass();
         this.addStyle();
 
@@ -153,6 +153,7 @@ class SliderCarousel {
             maxResponse = Math.max(...allResponse);
 
         const changeSlide = () => {
+
             this.options.widthSlide = Math.floor(100 / this.slidesToShow);
             this.options.maxPosition = this.slides.length - this.slidesToShow;
             this.addStyle();

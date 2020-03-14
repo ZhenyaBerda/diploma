@@ -14,9 +14,11 @@ class Slider {
         this.next = next;
         this.prev = prev;
         this.slides = document.querySelectorAll(slides);
-        this.counter = this.container.querySelector(counter);
-        this.total = this.counter.querySelector('.slider-counter-content__total');
-        this.current = this.counter.querySelector('.slider-counter-content__current');
+        if (counter) {
+            this.counter = this.container.querySelector(counter);
+            this.total = this.counter.querySelector('.slider-counter-content__total');
+            this.current = this.counter.querySelector('.slider-counter-content__current');
+        }
         this.content = this.container.querySelectorAll(content);
         this.options = {
             position,
@@ -26,16 +28,8 @@ class Slider {
     }
 
     init() {
-        this.total.textContent = this.options.countSlides;
-        this.current.textContent = this.options.position + 1;
-        for (let i = 0; i < this.options.countSlides; i++) {
-            if (i === 0) {
-                this.slides[i].style.display = 'block';
-            } else {
-                this.slides[i].style.display = 'none';
-            }
-        }
-
+        this.changeConter(this.total, this.options.countSlides);
+        this.showSlide();
         this.main();
     }
 
@@ -58,13 +52,31 @@ class Slider {
             if (this.options.position < 0) {
                 this.options.position = 0;
             }
-            this.current.textContent = this.options.position + 1;
+            this.changeConter(this.current, this.options.position + 1);
             this.nextSlide();
         });
     }
 
+    showSlide() {
+        this.changeConter(this.current, this.options.position + 1);
+        for (let i = 0; i < this.options.countSlides; i++) {
+            if (i === this.options.position) {
+                this.slides[i].style.display = 'flex';
+            } else {
+                this.slides[i].style.display = 'none';
+            }
+        }
+    }
+
+    changeConter(counter, value) {
+        if (!counter) {
+            return;
+        }
+        counter.textContent = value;
+    }
+
     nextSlide() {
-        this.slides[this.options.position].style.display = 'block';
+        this.slides[this.options.position].style.display = 'flex';
     }
 
     prevSlide() {

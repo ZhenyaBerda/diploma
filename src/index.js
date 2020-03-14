@@ -8,7 +8,9 @@ import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
 import repairTypesSlider from './modules/repairTypesSlider';
-import transpSlider from './modules/transpSlider';
+import togglePopupWithSlider from './modules/togglePopupWithSlider';
+import reviewSlider from './modules/reviewSlider';
+
 
 
 // меню бургер
@@ -31,8 +33,8 @@ hints('problems');
 // виды ремонта
 repairTypesSlider();
 // документы
-transpSlider();
-
+togglePopupWithSlider();
+reviewSlider();
 //аккордеон
 accordion();
 
