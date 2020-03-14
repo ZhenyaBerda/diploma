@@ -66,12 +66,12 @@ class SliderCarousel {
             overflow: hidden  !important;
         }
         .glo-slider__wrap {
-            display: flex !important;
+            display: flex;
             transition: transform 0.5s !important;
             will-change: transform !important;
         }
         .glo-slider__item {
-            display: flex !important;
+            display: flex;
             align-items: center;
             justify-content: center;
             flex: 0 0 ${this.options.widthSlide}% !important;

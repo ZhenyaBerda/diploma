@@ -9,6 +9,7 @@ import togglePopupPrivacy from './modules/togglePopupPrivacy';
 import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
+import tranSlider from './modules/tranSlider';
 
 
 // меню бургер
@@ -24,6 +25,8 @@ togglePopupPrivacy();
 // показ подсказок
 hints('formula');
 hints('problems');
+// виды ремонта
+tranSlider();
 
 //аккордеон
 accordion();
