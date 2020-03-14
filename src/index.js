@@ -5,10 +5,11 @@ import togglePhones from './modules/togglePhones';
 import togglePopupRepair from './modules/togglePopupRepair';
 import sendForm from './modules/sendForm';
 import togglePopupPrivacy from './modules/togglePopupPrivacy';
-import togglePopupConsultation from './modules/togglePopupConsultation';
+
 import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
+
 
 // меню бургер
 toggleMenu();
@@ -23,17 +24,14 @@ togglePopupPrivacy();
 // показ подсказок
 hints('formula');
 hints('problems');
-// окно-консультации
-togglePopupConsultation();
+
 //аккордеон
 accordion();
 
 
 
-    
 
-// слайдер-карусель
-const carousel = new SliderCarousel({
+const partnerSlider = new SliderCarousel({
     main: '.partner-wrapper',
     wrap: '.partners-slider',
     next: '#partners-arrow_right',
@@ -52,5 +50,5 @@ const carousel = new SliderCarousel({
     ],
 });
 
-carousel.init();
+partnerSlider.init();
 
