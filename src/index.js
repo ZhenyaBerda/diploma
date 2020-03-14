@@ -2,10 +2,8 @@
 
 import toggleMenu from './modules/toggleMenu';
 import togglePhones from './modules/togglePhones';
-import togglePopupRepair from './modules/togglePopupRepair';
 import sendForm from './modules/sendForm';
-import togglePopupPrivacy from './modules/togglePopupPrivacy';
-
+import togglePopup from './modules/togglePopup';
 import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
@@ -16,12 +14,17 @@ import tranSlider from './modules/tranSlider';
 toggleMenu();
 // реализация открытия второго номера
 togglePhones();
-// окрытие модального окна 'popup-repair-types'
-togglePopupRepair();
+
 //проверка вводимых значений и отправка данных (в процессе)
 sendForm();
-// открытие окна с политикой
-togglePopupPrivacy();
+// открытие popup-окон
+togglePopup('portfolio', '.portfolio-slider__slide-frame');
+togglePopup('repair-types', '#link-repair');
+togglePopup('consultation', '.consultation-button');
+togglePopup('transparency', '.transparency-item__img');
+togglePopup('design', '.link-list-designs');
+togglePopup('privacy', '.link-privacy');
+
 // показ подсказок
 hints('formula');
 hints('problems');
