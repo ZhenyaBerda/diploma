@@ -8,6 +8,7 @@ import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
 import tranSlider from './modules/tranSlider';
+import transpSlider from './modules/transpSlider';
 
 
 // меню бургер
@@ -30,6 +31,7 @@ hints('formula');
 hints('problems');
 // виды ремонта
 tranSlider();
+transpSlider();
 
 //аккордеон
 accordion();
