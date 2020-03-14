@@ -30,7 +30,6 @@ class SliderCarousel {
     }
 
     init() {
-        console.log(this.options.widthSlide, this.slidesToShow);
         this.addGloClass();
         this.addStyle();
 

@@ -1,13 +1,32 @@
 'use strict';
 
+import Slider from "./slider";
+
 const hints = (block) => {
     const container = document.querySelector(`#${block}`);
 
+    const responsive = () => {
+        const items = container.querySelectorAll(`.${block}-slider__slide`);
 
-    const addStyle = (hint) => {
-        const style = document.createElement('style');
-        style.classList.add('hint-style');
-        style.textContent = `
+        for (let i = 0; i < items.length; i++) {
+            items[i].classList.add('active-item');
+        }
+
+        const slider = new Slider({
+            container: `#${block}`,
+            slides: `.${block}-slider__slide`,
+            next: `#${block}-arrow_right`,
+            prev: `#${block}-arrow_left`,
+        });
+
+        slider.init();
+    };
+
+    const desktop = () => {
+        const addStyle = (hint) => {
+            const style = document.createElement('style');
+            style.classList.add('hint-style');
+            style.textContent = `
         .active-row {
             z-index: 999999999;
         }
@@ -18,51 +37,63 @@ const hints = (block) => {
         -webkit-transform: rotate(180deg) !important;
         transform: rotate(180deg) !important;
     }`;
+            document.head.appendChild(style);
+        };
 
-        document.head.appendChild(style);
+
+
+        container.addEventListener('mouseover', (event) => {
+            let target = event.target;
+
+            if (target.closest(`.${block}-item__icon`)) {
+                const item = target.closest(`.${block}-item`),
+                    hint = item.querySelector(`.${block}-item-popup`);
+
+                const coordElem = hint.getBoundingClientRect();
+                target.closest('.row').classList.add('active-row');
+                // переворачиваем подсказки
+                if (coordElem.top <= 0) {
+                    hint.style.bottom = `-${coordElem.height + 20}px`;
+                    addStyle(hint);
+                }
+
+                item.classList.add('active-item');
+                hint.style.visibility = 'visible';
+                hint.style.opacity = 1;
+            }
+
+        });
+
+        container.addEventListener('mouseout', (event) => {
+            let target = event.target;
+
+            if (target.closest(`.${block}-item__icon`)) {
+                const item = target.closest(`.${block}-item`),
+                    hint = item.querySelector(`.${block}-item-popup`);
+
+                item.classList.remove('active-item');
+                target.closest('.row').classList.remove('active-row');
+
+                hint.removeAttribute('style');
+                if (document.head.querySelector('.hint-style')) {
+                    document.head.querySelector('.hint-style').remove();
+                }
+            }
+
+        });
     };
 
-
-
-    container.addEventListener('mouseover', (event) => {
-        let target = event.target;
-
-        if (target.closest(`.${block}-item__icon`)) {
-            const item = target.closest(`.${block}-item`),
-                hint = item.querySelector(`.${block}-item-popup`);
-
-            const coordElem = hint.getBoundingClientRect();
-            target.closest('.row').classList.add('active-row');
-            // переворачиваем подсказки
-            if (coordElem.top <= 0) {
-                hint.style.bottom = `-${coordElem.height + 20}px`;
-                addStyle(hint);
-            }
-
-            item.classList.add('active-item');
-            hint.style.visibility = 'visible';
-            hint.style.opacity = 1;
+    const checkResponse = () => {
+        const widthWindow = document.documentElement.clientWidth;
+        if (widthWindow <= 1024) {
+            responsive();
+        } else {
+            desktop();
         }
+    };
 
-    });
-
-    container.addEventListener('mouseout', (event) => {
-        let target = event.target;
-
-        if (target.closest(`.${block}-item__icon`)) {
-            const item = target.closest(`.${block}-item`),
-                hint = item.querySelector(`.${block}-item-popup`);
-
-            item.classList.remove('active-item');
-            target.closest('.row').classList.remove('active-row');
-
-            hint.removeAttribute('style');
-            if (document.head.querySelector('.hint-style')) {
-                document.head.querySelector('.hint-style').remove();
-            }
-        }
-
-    });
+    checkResponse();
+    window.addEventListener('resize', checkResponse);
 
 };
 
