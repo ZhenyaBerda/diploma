@@ -10,7 +10,6 @@ const toggleTransparency = () => {
 
     let slide;
 
-
     //слайдер для popup окна
     const transpSlider = new Slider({
         container: `.popup-transparency`,

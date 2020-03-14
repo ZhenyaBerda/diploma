@@ -1,24 +1,48 @@
 'use strict';
 
-import Slider from "./slider";
+import SliderCarousel from "./SliderCarousel";
+import Slider from './slider';
 
 const hints = (block) => {
     const container = document.querySelector(`#${block}`);
 
     const responsive = () => {
-        const items = container.querySelectorAll(`.${block}-slider__slide`);
+        let slider;
 
-        for (let i = 0; i < items.length; i++) {
-            items[i].classList.add('active-item');
+
+
+        if (block === 'formula') {
+
+            //пришлоась ручками менять стили в верстке, чтобы было нормально отображение всех элементов
+            const item = document.querySelector('.formula-slider');
+            item.style.cssText = 'padding-bottom: 250px';
+
+
+            slider = new SliderCarousel({
+                main: `.${block}-slider-wrap`,
+                wrap: `.${block}-slider`,
+                next: `#${block}-arrow_right`,
+                prev: `#${block}-arrow_left`,
+                slidesToShow: 3,
+                infinity: true,
+                loop: true,
+                activeClass: 'active-item',
+            });
+        } else {
+
+            const items = document.querySelectorAll(`.${block}-slider__slide`);
+
+            for (let i = 0; i< items.length; i++) {
+                items[i].classList.add('active-item');
+            }
+
+            slider = new Slider({
+                container: `#${block}`,
+                slides: `.${block}-slider__slide`,
+                next: `#${block}-arrow_right`,
+                prev: `#${block}-arrow_left`,
+            });
         }
-
-        const slider = new Slider({
-            container: `#${block}`,
-            slides: `.${block}-slider__slide`,
-            next: `#${block}-arrow_right`,
-            prev: `#${block}-arrow_left`,
-        });
-
         slider.init();
     };
 
@@ -93,7 +117,6 @@ const hints = (block) => {
     };
 
     checkResponse();
-    window.addEventListener('resize', checkResponse);
 
 };
 

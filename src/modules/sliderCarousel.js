@@ -10,6 +10,8 @@ class SliderCarousel {
         slidesToShow = 1,
         infinity = false,
         responsive = [],
+        loop = false,
+        activeClass
     }) {
         if (!main || !wrap) {
             console.warn('slider-carousel: Необходимо ввести 2 свойства(main, wrap)');
@@ -22,7 +24,10 @@ class SliderCarousel {
         this.slidesToShow = slidesToShow;
         this.options = {
             position,
+            activeSlide: 1,
             infinity,
+            loop,
+            activeClass,
             widthSlide: Math.floor(100 / this.slidesToShow),
             maxPosition: this.slides.length - this.slidesToShow,
         };
@@ -32,11 +37,15 @@ class SliderCarousel {
     init() {
         this.addGloClass();
         this.addStyle();
+        
+
+        if (this.options.loop) {
+            this.insertItem(this.slides[this.slides.length - 1], this.slides[0]);
+        }
+
+        this.handlerClass(this.slides[this.options.activeSlide]);
 
         if (this.prev && this.next) {
-            this.controlSlider();
-        } else {
-            this.addArrow();
             this.controlSlider();
         }
         if (this.responsive) {
@@ -89,10 +98,22 @@ class SliderCarousel {
     prevSlider() {
         if (this.options.infinity || this.options.position > 0) {
             --this.options.position;
-            if (this.options.position < 0) {
+            if (this.options.position < 0 && !this.options.loop) {
                 this.options.position = this.options.maxPosition;
             }
-            this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+
+            this.options.positionLoop--;
+
+            // вычисляем перемещение
+            if (this.options.loop) {
+
+                this.insertItem(this.slides[this.slides.length - 1], this.slides[0]);
+                this.handlerClass(this.slides[this.options.activeSlide + 1]);
+                this.handlerClass(this.slides[this.options.activeSlide]);
+
+            } else {
+                this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+            }
         }
     }
 
@@ -100,50 +121,23 @@ class SliderCarousel {
         if (this.options.infinity || this.options.position < this.options.maxPosition) {
             ++this.options.position;
 
-            if (this.options.position > this.options.maxPosition) {
+            this.options.positionLoop++;
+            if (this.options.position > this.options.maxPosition && !this.options.loop) {
                 this.options.position = 0;
             }
-            this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+
+            if (this.options.loop) {
+                this.insertItem(this.slides[0], null);
+                this.handlerClass(this.slides[this.options.activeSlide - 1]);
+                this.handlerClass(this.slides[this.options.activeSlide]);
+            } else {
+                this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
+            }
+
+
+
+
         }
-    }
-
-    addArrow() {
-
-        this.prev = document.createElement('button');
-        this.next = document.createElement('button');
-
-        this.prev.className = 'glo-slider__prev';
-        this.next.className = 'glo-slider__next';
-
-        this.main.appendChild(this.prev);
-        this.main.appendChild(this.next);
-
-        const style = document.createElement('style');
-        style.textContent = `
-               .glo-slider__prev,
-        .glo-slider__next {
-            margin: 0 10px;
-            border: 20px solid transparent;
-            background: transparent;
-        }
-        
-        .glo-slider__next{
-            border-left-color: #19b5fe;
-        }
-        .glo-slider__prev {
-            border-right-color: #19b5fe;
-        }
-        .glo-slider__prev:hover,
-        .glo-slider__next:hover,
-        .glo-slider__prev:focus,
-        .glo-slider__next:focus {
-            background: transparent;
-            outline: transparent;
-        }
-        `;
-
-        document.head.appendChild(style);
-
     }
 
     responsInit() {
@@ -178,6 +172,17 @@ class SliderCarousel {
         checkResponse();
 
         window.addEventListener('resize', checkResponse);
+    }
+
+    handlerClass(elem) {
+        if (this.options.activeClass) {
+            elem.classList.toggle(this.options.activeClass);
+        }
+    }
+
+    insertItem(insert, before) {
+        // переставляем элементы
+        this.wrap.insertBefore(insert, before);
     }
 }
 
