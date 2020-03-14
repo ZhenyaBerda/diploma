@@ -8,7 +8,7 @@ import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
 import repairTypesSlider from './modules/repairTypesSlider';
-import togglePopupWithSlider from './modules/togglePopupWithSlider';
+import toggleTransparency from './modules/toggleTransparency';
 import reviewSlider from './modules/reviewSlider';
 
 
@@ -17,7 +17,6 @@ import reviewSlider from './modules/reviewSlider';
 toggleMenu();
 // реализация открытия второго номера
 togglePhones();
-
 //проверка вводимых значений и отправка данных (в процессе)
 sendForm();
 // открытие popup-окон
@@ -33,7 +32,7 @@ hints('problems');
 // виды ремонта
 repairTypesSlider();
 // документы
-togglePopupWithSlider();
+toggleTransparency();
 // слайдер отзывов
 reviewSlider();
 //аккордеон

@@ -1,7 +1,8 @@
 'use strict';
 
-const hints = (block, rotate) => {
+const hints = (block) => {
     const container = document.querySelector(`#${block}`);
+
 
     const addStyle = (hint) => {
         const style = document.createElement('style');
