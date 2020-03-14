@@ -22,7 +22,6 @@ sendForm();
 togglePopup('portfolio', '.portfolio-slider__slide-frame');
 togglePopup('repair-types', '#link-repair');
 togglePopup('consultation', '.consultation-button');
-togglePopup('transparency', '.transparency-item__img');
 togglePopup('design', '.link-list-designs');
 togglePopup('privacy', '.link-privacy');
 

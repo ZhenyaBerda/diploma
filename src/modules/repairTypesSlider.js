@@ -90,7 +90,6 @@ const repairTypesSlider = () => {
     };
 
 
-
     containerRepair.addEventListener('click', (event) => {
         const target = event.target;
         if (target.closest('.repair-types-nav__item')) {
@@ -112,7 +111,6 @@ const repairTypesSlider = () => {
             // получаем нужный слайдер
             for (let i = 0; i < tabs.length; i++) {
                 if (tabs[i].matches('.active')) {
-                    console.log(tabs[i]);
                     current.textContent = repairSliders[i].options.position + 1;
                 }
             }

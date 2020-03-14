@@ -1,6 +1,6 @@
 'use strict';
 
-const togglePopup = (popupClass, linkClass) => {
+const togglePopupWithSlider = (popupClass, linkClass) => {
     const popup = document.querySelector(`.popup-${popupClass}`),
         menuDialog = document.querySelector('.popup-dialog-menu'),
         popupMenu = document.querySelector('.popup-menu');;
@@ -18,7 +18,7 @@ const togglePopup = (popupClass, linkClass) => {
                     menuDialog.classList.remove('showHide-menu');
                     popupMenu.style.visibility = 'hidden';
                 }
-                return;
+                return target;
             }
 
             // закрываем окно
@@ -31,4 +31,4 @@ const togglePopup = (popupClass, linkClass) => {
     });
 };
 
-export default togglePopup;
+export default togglePopupWithSlider;
