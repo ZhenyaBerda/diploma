@@ -2,7 +2,7 @@
 
 import SliderCarousel from './SliderCarousel';
 
-const tranSlider = () => {
+const repairTypesSlider = () => {
 
     const containerRepair = document.getElementById('repair-types'),
         containerSlider = containerRepair.querySelector('.repair-types-slider'),
@@ -81,7 +81,7 @@ const tranSlider = () => {
         repairSliders[index].options.position = 0;
         activeSlider.style.transform = `translateX(-${repairSliders[index].options.position * repairSliders[index].options.widthSlide}%)`;
         total.textContent = activeSlider.children.length;
-
+        current.textContent = 1;
         //закрываем прошлый слайдер и открываем выбранный
         prevSlider.style.display = 'none';
         activeSlider.style.display = 'flex';
@@ -119,7 +119,6 @@ const tranSlider = () => {
         }
     });
 
-
 };
 
-export default tranSlider;
+export default repairTypesSlider;

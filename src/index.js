@@ -7,7 +7,7 @@ import togglePopup from './modules/togglePopup';
 import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
-import tranSlider from './modules/tranSlider';
+import repairTypesSlider from './modules/repairTypesSlider';
 import transpSlider from './modules/transpSlider';
 
 
@@ -30,7 +30,8 @@ togglePopup('privacy', '.link-privacy');
 hints('formula');
 hints('problems');
 // виды ремонта
-tranSlider();
+repairTypesSlider();
+// документы
 transpSlider();
 
 //аккордеон
