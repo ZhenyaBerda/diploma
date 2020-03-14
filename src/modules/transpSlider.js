@@ -1,18 +1,16 @@
 'use strict';
 
-import SliderCarousel from './SliderCarousel';
+import Slider from './slider';
 
 const transpSlider = () => {
-    const transpSlider = new SliderCarousel({
-        main: '.popup-transparency-slider-wrap',
-        wrap: '.popup-transparency-slider',
-        next: '.popup-arrow_transparency_right',
-        prev: '.popup-arrow_transparency_left',
-        slidesToShow: 1,
+    const transpSlider = new Slider({
+        container: `.popup-transparency`,
+        slides: `.popup-transparency-slider__slide`,
+        next: `#transparency_right`,
+        prev: `#transparency_left`
     });
 
-    transpSlider.init();
-    
+    transpSlider.main();
 };
 
 export default transpSlider;
