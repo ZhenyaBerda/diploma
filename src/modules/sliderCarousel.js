@@ -177,7 +177,6 @@ class SliderCarousel {
         checkResponse();
 
         window.addEventListener('resize', checkResponse);
-
     }
 }
 

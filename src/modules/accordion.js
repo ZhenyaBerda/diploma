@@ -9,9 +9,15 @@ const accordion = () => {
 
 
     accordion.addEventListener('click', (event) => {
+
         const target = event.target;
 
         if (target.closest('.title_block')) {
+            const openBlock = accordion.querySelector('.msg-active');
+            console.log(openBlock);
+            if (openBlock && !target.matches('.msg-active')) {
+                handlerContent(openBlock);
+            }
             handlerContent(target);
         }
     });

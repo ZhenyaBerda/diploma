@@ -8,6 +8,6 @@ const tranSlider = () => {
         prevBtn = document.getElementById('repair-types-arrow_left');
 
     containerRepair.addEventListener('click', (event) => {
-
+        
     });
 };
