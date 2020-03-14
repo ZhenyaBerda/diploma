@@ -34,6 +34,7 @@ hints('problems');
 repairTypesSlider();
 // документы
 togglePopupWithSlider();
+// слайдер отзывов
 reviewSlider();
 //аккордеон
 accordion();
