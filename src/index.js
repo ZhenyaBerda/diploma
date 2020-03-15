@@ -13,6 +13,7 @@ import portfolioSlider from './modules/portfolioSlider';
 import portfolioPopupSlider from './modules/portfolioPopupSlider';
 import partnerSlider from './modules/partnerSlider';
 import scheme from './modules/scheme';
+import design from './modules/design';
 
 
 // меню бургер
@@ -46,7 +47,6 @@ portfolioPopupSlider();
 partnerSlider();
 
 scheme();
-
-
+design();
 
 
