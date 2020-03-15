@@ -99,6 +99,7 @@ const portfolioSlider = () => {
             }
             portfolioPopupSlider.options.position = currentCount;
             portfolioPopupSlider.showSlide();
+            console.log(portfolioPopupSlider.content)
             togglePopup('portfolio', '.portfolio-slider__slide-frame');
         }
 

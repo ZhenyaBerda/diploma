@@ -19,7 +19,9 @@ class Slider {
             this.total = this.counter.querySelector('.slider-counter-content__total');
             this.current = this.counter.querySelector('.slider-counter-content__current');
         }
-        this.content = this.container.querySelectorAll(content);
+        if (content) {
+            this.content = this.container.querySelectorAll(content);
+        }
         this.options = {
             position,
             countSlides: this.slides.length,
@@ -37,7 +39,10 @@ class Slider {
         this.container.addEventListener('click', (event) => {
             const target = event.target;
 
-            this.prevSlide();
+            this.prevSlide(this.slides[this.options.position]);
+            if (this.content) {
+                this.prevSlide(this.content[this.options.position]);
+            }
 
             if (target.closest(this.prev)) {
                 this.options.position--;
@@ -53,17 +58,28 @@ class Slider {
                 this.options.position = 0;
             }
             this.changeConter(this.current, this.options.position + 1);
-            this.nextSlide();
+            this.nextSlide(this.slides[this.options.position]);
+            if (this.content) {
+                this.nextSlide(this.content[this.options.position]);
+            }
+
         });
     }
 
     showSlide() {
         this.changeConter(this.current, this.options.position + 1);
+
         for (let i = 0; i < this.options.countSlides; i++) {
             if (i === this.options.position) {
                 this.slides[i].style.display = 'flex';
+                if (this.content) {
+                    this.content[i].style.display = 'flex';
+                }
             } else {
                 this.slides[i].style.display = 'none';
+                if (this.content) {
+                    this.content[i].style.display = 'none';
+                }
             }
         }
     }
@@ -75,12 +91,16 @@ class Slider {
         counter.textContent = value;
     }
 
-    nextSlide() {
-        this.slides[this.options.position].style.display = 'flex';
+    nextSlide(elem) {
+
+        elem.style.display = 'flex';
+
     }
 
-    prevSlide() {
-        this.slides[this.options.position].style.display = 'none';
+    prevSlide(elem) {
+
+        elem.style.display = 'none';
+
     }
 
 }
