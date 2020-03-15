@@ -12,6 +12,7 @@ import reviewSlider from './modules/reviewSlider';
 import portfolioSlider from './modules/portfolioSlider'; 
 import portfolioPopupSlider from './modules/portfolioPopupSlider';
 import partnerSlider from './modules/partnerSlider';
+import scheme from './modules/scheme';
 
 
 // меню бургер
@@ -43,6 +44,8 @@ portfolioSlider();
 portfolioPopupSlider();
 
 partnerSlider();
+
+scheme();
 
 
 

@@ -4,13 +4,19 @@ class Tabs {
     constructor({
         tabsHeader,
         tab,
-        content
+        content,
+        slider
     }) {
         this.tabsHeader = document.querySelector(tabsHeader);
-        this.tab = tabsHeader.querySelectorAll(tab);
+        this.tab = this.tabsHeader.querySelectorAll(tab);
         this.tabClass = tab;
-        this.content = document.querySelectorAll(content);
+        if (content) {
+            this.content = document.querySelectorAll(content);
+        }
+        this.slider = document.querySelector(slider).children;
+
         this.position = 0;
+
     }
 
     init() {
@@ -24,20 +30,31 @@ class Tabs {
                         this.position = index;
                         this.toggleTabContent();
                     }
-                })
+                });
             }
 
         });
     }
 
     toggleTabContent() {
-        for (let i = 0; i < this.content.length; i++) {
+        for (let i = 0; i < this.tab.length; i++) {
             if (this.position === i) {
                 this.tab[i].classList.add('active');
-                this.content[i].classList.add('visible-content-block');
+                if (this.content) {
+                    this.content[i].classList.add('visible-content-block');
+                }
+                this.slider[i].classList.add('active-slider');
+                this.slider[i].style.display = 'block';
+
             } else {
                 this.tab[i].classList.remove('active');
-                this.content[i].classList.remove('visible-content-block');
+                if (this.content) {
+                    this.content[i].classList.remove('visible-content-block');
+                }
+                this.slider[i].classList.remove('active-slider');
+                this.slider[i].style.display = 'none';
+
+
             }
         }
     }

@@ -30,7 +30,7 @@ class Slider {
     }
 
     init() {
-        this.changeConter(this.total, this.options.countSlides);
+        this.changeCounter(this.total, this.options.countSlides);
         this.showSlide();
         this.main();
     }
@@ -57,7 +57,7 @@ class Slider {
             if (this.options.position < 0) {
                 this.options.position = 0;
             }
-            this.changeConter(this.current, this.options.position + 1);
+            this.changeCounter(this.current, this.options.position + 1);
             this.nextSlide(this.slides[this.options.position]);
             if (this.content) {
                 this.nextSlide(this.content[this.options.position]);
@@ -67,7 +67,7 @@ class Slider {
     }
 
     showSlide() {
-        this.changeConter(this.current, this.options.position + 1);
+        this.changeCounter(this.current, this.options.position + 1);
 
         for (let i = 0; i < this.options.countSlides; i++) {
             if (i === this.options.position) {
@@ -84,7 +84,7 @@ class Slider {
         }
     }
 
-    changeConter(counter, value) {
+    changeCounter(counter, value) {
         if (!counter) {
             return;
         }
@@ -92,13 +92,11 @@ class Slider {
     }
 
     nextSlide(elem) {
-
         elem.style.display = 'flex';
 
     }
 
     prevSlide(elem) {
-
         elem.style.display = 'none';
 
     }
