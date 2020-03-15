@@ -21,7 +21,6 @@ togglePhones();
 //проверка вводимых значений и отправка данных (в процессе)
 sendForm();
 // открытие popup-окон
-togglePopup('portfolio', '.portfolio-slider__slide-frame');
 togglePopup('repair-types', '#link-repair');
 togglePopup('consultation', '.consultation-button');
 togglePopup('design', '.link-list-designs');

@@ -12,7 +12,7 @@ const portfolioPopupSlider = () => {
         content: '.popup-portfolio-text'
     });
 
-    portfolioPopupSlider.init();
+    // portfolioPopupSlider.init();
 };
 
 export default portfolioPopupSlider;
