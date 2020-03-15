@@ -27,12 +27,17 @@ const hints = (block) => {
                 infinity: true,
                 loop: true,
                 activeClass: 'active-item',
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        slideToShow: 1
+                    }]
             });
         } else {
 
             const items = document.querySelectorAll(`.${block}-slider__slide`);
 
-            for (let i = 0; i< items.length; i++) {
+            for (let i = 0; i < items.length; i++) {
                 items[i].classList.add('active-item');
             }
 

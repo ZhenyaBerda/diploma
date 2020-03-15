@@ -10,6 +10,7 @@ import accordion from './modules/accordion';
 import repairTypesSlider from './modules/repairTypesSlider';
 import toggleTransparency from './modules/toggleTransparency';
 import reviewSlider from './modules/reviewSlider';
+import portfolioSlider from './modules/portfolioSlider'; 
 
 
 
@@ -37,6 +38,8 @@ toggleTransparency();
 reviewSlider();
 //аккордеон
 accordion();
+// слайдер портфолио
+portfolioSlider();
 
 
 

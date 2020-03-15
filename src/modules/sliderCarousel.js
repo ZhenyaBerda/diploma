@@ -35,12 +35,22 @@ class SliderCarousel {
     }
 
     init() {
+
+
         this.addGloClass();
         this.addStyle();
-        
+
+        if (this.responsive) {
+            this.responsInit();
+        }
 
         if (this.options.loop) {
-            this.insertItem(this.slides[this.slides.length - 1], this.slides[0]);
+
+            if (this.slidesToShow === 1) {
+                this.options.activeSlide = 0;
+            } else {
+                this.insertItem(this.slides[this.slides.length - 1], this.slides[0]);
+            }
         }
 
         this.handlerClass(this.slides[this.options.activeSlide]);
@@ -48,9 +58,7 @@ class SliderCarousel {
         if (this.prev && this.next) {
             this.controlSlider();
         }
-        if (this.responsive) {
-            this.responsInit();
-        }
+
     }
 
     addGloClass() {
@@ -74,7 +82,7 @@ class SliderCarousel {
             overflow: hidden;
         }
         .glo-slider__wrap {
-           
+         
             display: flex;
             transition: transform 0.5s !important;
             will-change: transform !important;
@@ -106,9 +114,9 @@ class SliderCarousel {
 
             // вычисляем перемещение
             if (this.options.loop) {
-
+                this.handlerClass(this.slides[this.options.activeSlide]);
                 this.insertItem(this.slides[this.slides.length - 1], this.slides[0]);
-                this.handlerClass(this.slides[this.options.activeSlide + 1]);
+
                 this.handlerClass(this.slides[this.options.activeSlide]);
 
             } else {
@@ -127,8 +135,9 @@ class SliderCarousel {
             }
 
             if (this.options.loop) {
+                this.handlerClass(this.slides[this.options.activeSlide]);
                 this.insertItem(this.slides[0], null);
-                this.handlerClass(this.slides[this.options.activeSlide - 1]);
+
                 this.handlerClass(this.slides[this.options.activeSlide]);
             } else {
                 this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
@@ -146,7 +155,7 @@ class SliderCarousel {
             maxResponse = Math.max(...allResponse);
 
         const changeSlide = () => {
-
+            this.options.activeSlide = 0;
             this.options.widthSlide = Math.floor(100 / this.slidesToShow);
             this.options.maxPosition = this.slides.length - this.slidesToShow;
             this.addStyle();
