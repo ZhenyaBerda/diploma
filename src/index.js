@@ -11,7 +11,7 @@ import repairTypesSlider from './modules/repairTypesSlider';
 import toggleTransparency from './modules/toggleTransparency';
 import reviewSlider from './modules/reviewSlider';
 import portfolioSlider from './modules/portfolioSlider'; 
-
+import portfolioPopupSlider from './modules/portfolioPopupSlider';
 
 
 // меню бургер
@@ -40,6 +40,8 @@ reviewSlider();
 accordion();
 // слайдер портфолио
 portfolioSlider();
+
+portfolioPopupSlider();
 
 
 

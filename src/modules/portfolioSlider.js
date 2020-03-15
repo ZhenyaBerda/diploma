@@ -28,6 +28,8 @@ const portfolioSlider = () => {
 
     });
 
+
+
     const portfolioSliderMobile = new Slider({
         container: `#portfolio`,
         slides: `.portfolio-slider-mobile .portfolio-slider__slide-frame`,
@@ -41,23 +43,23 @@ const portfolioSlider = () => {
         const widthWindow = document.documentElement.clientWidth;
         if (widthWindow <= 768) {
             sliderDekstop.style.display = 'none';
-            sliderMobile.style.display = 'block';
+            sliderMobile.style.display = 'flex';
 
             //переключаем кнопки
-            document.getElementById('portfolio-arrow-mobile_right').style.display = 'block';
-            document.getElementById('portfolio-arrow-mobile_left').style.display = 'block';
+            document.getElementById('portfolio-arrow-mobile_right').style.display = 'flex';
+            document.getElementById('portfolio-arrow-mobile_left').style.display = 'flex';
             document.getElementById('portfolio-arrow_right').style.display = 'none';
             document.getElementById('portfolio-arrow_left').style.display = 'none';
 
         } else {
-            sliderDekstop.style.display = 'block';
+            sliderDekstop.style.display = 'flex';
             sliderMobile.style.display = 'none';
 
             //переключаем кнопки
             document.getElementById('portfolio-arrow-mobile_right').style.display = 'none';
             document.getElementById('portfolio-arrow-mobile_left').style.display = 'none';
-            document.getElementById('portfolio-arrow_right').style.display = 'block';
-            document.getElementById('portfolio-arrow_left').style.display = 'block';
+            document.getElementById('portfolio-arrow_right').style.display = 'flex';
+            document.getElementById('portfolio-arrow_left').style.display = 'flex';
         }
 
     };
