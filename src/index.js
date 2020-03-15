@@ -4,7 +4,6 @@ import toggleMenu from './modules/toggleMenu';
 import togglePhones from './modules/togglePhones';
 import sendForm from './modules/sendForm';
 import togglePopup from './modules/togglePopup';
-import SliderCarousel from './modules/SliderCarousel';
 import hints from './modules/hints';
 import accordion from './modules/accordion';
 import repairTypesSlider from './modules/repairTypesSlider';
@@ -12,6 +11,7 @@ import toggleTransparency from './modules/toggleTransparency';
 import reviewSlider from './modules/reviewSlider';
 import portfolioSlider from './modules/portfolioSlider'; 
 import portfolioPopupSlider from './modules/portfolioPopupSlider';
+import partnerSlider from './modules/partnerSlider';
 
 
 // меню бургер
@@ -43,27 +43,8 @@ portfolioSlider();
 
 portfolioPopupSlider();
 
+partnerSlider();
 
 
 
-const partnerSlider = new SliderCarousel({
-    main: '.partner-wrapper',
-    wrap: '.partners-slider',
-    next: '#partners-arrow_right',
-    prev: '#partners-arrow_left',
-    slidesToShow: 3,
-    infinity: true,
-    responsive: [
-        {
-            breakpoint: 768,
-            slideToShow: 2
-        },
-        {
-            breakpoint: 575,
-            slideToShow: 1
-        }
-    ],
-});
-
-partnerSlider.init();
 
