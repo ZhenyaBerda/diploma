@@ -36,29 +36,32 @@ class SliderCarousel {
 
     init() {
 
-
         this.addGloClass();
-        this.addStyle();
 
+
+        this.addStyle();
         if (this.responsive) {
             this.responsInit();
         }
-
         if (this.options.loop) {
-
+            this.removeClass();
             if (this.slidesToShow === 1) {
                 this.options.activeSlide = 0;
             } else {
                 this.insertItem(this.slides[this.slides.length - 1], this.slides[0]);
             }
+
+            this.handlerClass(this.slides[this.options.activeSlide]);
+
         }
 
-        this.handlerClass(this.slides[this.options.activeSlide]);
+
+
+
 
         if (this.prev && this.next) {
             this.controlSlider();
         }
-
     }
 
     addGloClass() {
@@ -143,9 +146,6 @@ class SliderCarousel {
                 this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
             }
 
-
-
-
         }
     }
 
@@ -155,7 +155,17 @@ class SliderCarousel {
             maxResponse = Math.max(...allResponse);
 
         const changeSlide = () => {
-            this.options.activeSlide = 0;
+
+            if (this.loop) {
+                if (this.slidesToShow === 1) {
+                    this.options.activeSlide = 0;
+                } else {
+                    this.options.activeSlide = 1;
+                }
+
+                this.removeClass();
+                this.handlerClass(this.options.activeSlide);
+            }
             this.options.widthSlide = Math.floor(100 / this.slidesToShow);
             this.options.maxPosition = this.slides.length - this.slidesToShow;
             this.addStyle();
@@ -179,7 +189,6 @@ class SliderCarousel {
         };
 
         checkResponse();
-
         window.addEventListener('resize', checkResponse);
     }
 
@@ -189,8 +198,13 @@ class SliderCarousel {
         }
     }
 
+    removeClass() {
+        for (let i = 0; i < this.slides.length; i++) {
+            this.slides[i].classList.remove(this.options.addGloClass);
+        }
+    }
+
     insertItem(insert, before) {
-        // переставляем элементы
         this.wrap.insertBefore(insert, before);
     }
 }

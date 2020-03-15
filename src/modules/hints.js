@@ -5,49 +5,39 @@ import Slider from './slider';
 
 const hints = (block) => {
     const container = document.querySelector(`#${block}`);
+    let slider;
 
     const responsive = () => {
-        let slider;
-
-
-
+        //пришлоась ручками менять стили в верстке, чтобы нормально отображались элементы
+        const item = document.querySelector(`.${block}-slider`);
+        let padding, slideToShow = 1, respon;
         if (block === 'formula') {
+            padding = 250;
+            slideToShow = 3;
 
-            //пришлоась ручками менять стили в верстке, чтобы было нормально отображение всех элементов
-            const item = document.querySelector('.formula-slider');
-            item.style.cssText = 'padding-bottom: 250px';
-
-
-            slider = new SliderCarousel({
-                main: `.${block}-slider-wrap`,
-                wrap: `.${block}-slider`,
-                next: `#${block}-arrow_right`,
-                prev: `#${block}-arrow_left`,
-                slidesToShow: 3,
-                infinity: true,
-                loop: true,
-                activeClass: 'active-item',
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        slideToShow: 1
-                    }]
-            });
         } else {
+            padding = 500;
+            slideToShow = 1;
 
-            const items = document.querySelectorAll(`.${block}-slider__slide`);
-
-            for (let i = 0; i < items.length; i++) {
-                items[i].classList.add('active-item');
-            }
-
-            slider = new Slider({
-                container: `#${block}`,
-                slides: `.${block}-slider__slide`,
-                next: `#${block}-arrow_right`,
-                prev: `#${block}-arrow_left`,
-            });
         }
+        item.style.cssText = `padding-bottom: ${padding}px`;
+
+        slider = new SliderCarousel({
+            main: `.${block}-slider-wrap`,
+            wrap: `.${block}-slider`,
+            next: `#${block}-arrow_right`,
+            prev: `#${block}-arrow_left`,
+            slidesToShow: slideToShow,
+            infinity: true,
+            loop: true,
+            activeClass: 'active-item',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    slideToShow: 1
+                }
+            ],
+        });
         slider.init();
     };
 
@@ -111,18 +101,20 @@ const hints = (block) => {
 
         });
     };
-
     const checkResponse = () => {
+        const items = document.querySelectorAll(`.${block}-item`);
+
         const widthWindow = document.documentElement.clientWidth;
         if (widthWindow <= 1024) {
             responsive();
         } else {
             desktop();
+            slider = null;
         }
     };
 
     checkResponse();
-
+    window.addEventListener('resize', checkResponse);
 };
 
 export default hints;
