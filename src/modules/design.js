@@ -17,26 +17,30 @@ const design = () => {
     const designTabs = new Tabs({
         tabsHeader: '#designs-list',
         tab: '.designs-nav__item',
-        slider: '.designs-slider'
+        slider: '.designs-slider',
+        content: `.preview-block`
     });
 
     let slidersDesign = [];
 
-    for (let i = 0; i < tabsSvg.length; i++) {
-       
 
-       // slidersDesign[i].init();
+
+    for (let i = 0; i < tabs.length; i++) {
+        console.log(document.querySelector(`.designs-slider__style${i + 1}`));
+        slidersDesign = new Slider({
+            container: `.designs-slider__style${i + 1}`,
+            slides: `.designs-slider__style${i + 1} .designs-slider__style-slide`,
+            next: `#design_right`,
+            prev: `#design_left`,
+            // counter: '#design_left',
+
+        });
+
+        // slidersDesign[i].init();
     }
-/*
-    const designSlider = new Slider({
-        container: `.designs-slider`,
-        slides: `.popup-portfolio-slider__slide`,
-        next: `#popup_portfolio_right`,
-        prev: `#popup_portfolio_left`,
-        counter: '#popup-portfolio-counter',
-        content: '.popup-portfolio-text'
-    });
-*/
+    /*
+        const 
+    */
 
     designTabs.init();
     total.textContent = tabs.length;
@@ -76,7 +80,7 @@ const design = () => {
                 if (item.matches('.active')) {
                     current.textContent = index + 1;
                 }
-            })
+            });
         }
     });
 

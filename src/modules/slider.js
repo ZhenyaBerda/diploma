@@ -41,7 +41,9 @@ class Slider {
 
             this.prevSlide(this.slides[this.options.position]);
             if (this.content) {
+
                 this.prevSlide(this.content[this.options.position]);
+
             }
 
             if (target.closest(this.prev)) {
@@ -60,8 +62,12 @@ class Slider {
             this.changeCounter(this.current, this.options.position + 1);
             this.nextSlide(this.slides[this.options.position]);
             if (this.content) {
+
                 this.nextSlide(this.content[this.options.position]);
+
+
             }
+
 
         });
     }
@@ -73,12 +79,16 @@ class Slider {
             if (i === this.options.position) {
                 this.slides[i].style.display = 'flex';
                 if (this.content) {
+
                     this.content[i].style.display = 'flex';
+
                 }
             } else {
                 this.slides[i].style.display = 'none';
                 if (this.content) {
+
                     this.content[i].style.display = 'none';
+
                 }
             }
         }
@@ -93,14 +103,11 @@ class Slider {
 
     nextSlide(elem) {
         elem.style.display = 'flex';
-
     }
 
     prevSlide(elem) {
         elem.style.display = 'none';
-
     }
-
 }
 
 export default Slider;
