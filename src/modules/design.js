@@ -23,14 +23,7 @@ const design = () => {
     let slidersDesign = [];
 
     for (let i = 0; i < tabsSvg.length; i++) {
-        slidersDesign[i] = new SliderCarousel({
-            main: '.designs-slider-wrap',
-            wrap: `.designs-slider__style${i + 1}`,
-            next: '#design_right',
-            prev: '#design_left',
-            slidesToShow: 1,
-            infinity: true,
-        });
+       
 
        // slidersDesign[i].init();
     }
