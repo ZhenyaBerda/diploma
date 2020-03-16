@@ -5,7 +5,8 @@ class Tabs {
         tabsHeader,
         tab,
         content,
-        slider
+        slider,
+        activeClass
     }) {
         this.tabsHeader = document.querySelector(tabsHeader);
         this.tab = this.tabsHeader.querySelectorAll(tab);
@@ -16,6 +17,7 @@ class Tabs {
         this.slider = document.querySelector(slider).children;
 
         this.position = 0;
+        this.activeClass = activeClass;
 
     }
 
@@ -41,7 +43,8 @@ class Tabs {
             if (this.position === i) {
                 this.tab[i].classList.add('active');
                 if (this.content) {
-                    this.content[i].classList.add('visible-content-block');
+                    this.content[i].classList.add(this.activeClass);
+                    // this.content[i].style.display = 'block';
                 }
                 this.slider[i].classList.add('active-slider');
                 this.slider[i].style.display = 'block';
@@ -49,7 +52,9 @@ class Tabs {
             } else {
                 this.tab[i].classList.remove('active');
                 if (this.content) {
-                    this.content[i].classList.remove('visible-content-block');
+                    this.content[i].classList.remove(this.activeClass);
+                    // this.content[i].style.display = 'none';
+
                 }
                 this.slider[i].classList.remove('active-slider');
                 this.slider[i].style.display = 'none';

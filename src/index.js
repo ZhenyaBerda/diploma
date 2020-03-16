@@ -9,11 +9,12 @@ import accordion from './modules/accordion';
 import repairTypesSlider from './modules/repairTypesSlider';
 import toggleTransparency from './modules/toggleTransparency';
 import reviewSlider from './modules/reviewSlider';
-import portfolioSlider from './modules/portfolioSlider'; 
+import portfolioSlider from './modules/portfolioSlider';
 import partnerSlider from './modules/partnerSlider';
 import scheme from './modules/scheme';
 import design from './modules/design';
 import typesRepairPopup from './modules/typesRepairPopup';
+import designPopupSlider from './modules/designPopupSlider';
 
 
 // меню бургер
@@ -48,5 +49,6 @@ partnerSlider();
 
 scheme();
 design();
+designPopupSlider();
 
 

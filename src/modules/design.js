@@ -10,14 +10,15 @@ const design = () => {
     const tabsSvg = document.querySelectorAll('.designs-nav__item svg'),
         container = document.getElementById('designs-list'),
         tabs = container.querySelectorAll('.designs-nav__item');
-        
-       
+
+
     // инициализация табов
     const designTabs = new Tabs({
         tabsHeader: '#designs-list',
         tab: '.designs-nav__item',
         slider: '.designs-slider',
-        content: `.preview-block`
+        content: `.preview-block`,
+        activeClass: 'visible'
     });
 
     let slidersDesign = [];
@@ -41,7 +42,7 @@ const design = () => {
 
 
     designTabs.init();
-  
+
     const response = () => {
         const windowWidth = document.documentElement.clientWidth;
 
