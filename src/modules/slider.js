@@ -53,11 +53,11 @@ class Slider {
             }
 
             if (this.options.position >= this.options.countSlides) {
-                this.options.position = this.options.countSlides - 1;
+                this.options.position = 0;
             }
 
             if (this.options.position < 0) {
-                this.options.position = 0;
+                this.options.position = this.options.countSlides - 1;
             }
             this.changeCounter(this.current, this.options.position + 1);
             this.nextSlide(this.slides[this.options.position]);

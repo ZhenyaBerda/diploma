@@ -12,12 +12,12 @@ class SliderCarousel {
         responsive = [],
         loop = false,
         activeClass,
-        responseFunction
     }) {
         if (!main || !wrap) {
             console.warn('slider-carousel: Необходимо ввести 2 свойства(main, wrap)');
         }
         this.main = document.querySelector(main);
+        this.mainName = main;
         this.wrap = document.querySelector(wrap);
         this.next = document.querySelector(next);
         this.prev = document.querySelector(prev);
@@ -33,7 +33,7 @@ class SliderCarousel {
             maxPosition: this.slides.length - this.slidesToShow,
         };
         this.responsive = responsive;
-    
+
     }
 
     init() {
@@ -76,23 +76,14 @@ class SliderCarousel {
     }
 
     addStyle() {
-        let style = document.getElementById('sliderCarousel-style');
+        let style = document.getElementById(`sliderCarousel-style__${this.mainName}`);
         if (!style) {
             style = document.createElement('style');
-            style.id = 'sliderCarousel-style';
+            style.id = `sliderCarousel-style__${this.mainName.slice(1)}`;
         }
 
         style.textContent = `
-        .glo-slider {
-            overflow: hidden;
-        }
-        .glo-slider__wrap {
-         
-            display: flex;
-            transition: transform 0.5s !important;
-            will-change: transform !important;
-        }
-        .glo-slider__item {
+        ${this.mainName} .glo-slider__item {
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
@@ -100,6 +91,8 @@ class SliderCarousel {
             margin: auto 0 !important; 
         }
 `;
+
+        console.log(this.wrap, this.options.widthSlide);
         document.head.appendChild(style);
     }
 
