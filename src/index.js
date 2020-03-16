@@ -14,6 +14,7 @@ import portfolioPopupSlider from './modules/portfolioPopupSlider';
 import partnerSlider from './modules/partnerSlider';
 import scheme from './modules/scheme';
 import design from './modules/design';
+import typesRepairPopup from './modules/typesRepairPopup';
 
 
 // меню бургер
@@ -23,11 +24,13 @@ togglePhones();
 //проверка вводимых значений и отправка данных (в процессе)
 sendForm();
 // открытие popup-окон
-togglePopup('repair-types', '#link-repair');
+
 togglePopup('consultation', '.consultation-button');
 togglePopup('design', '.link-list-designs');
 togglePopup('privacy', '.link-privacy');
 
+togglePopup('repair-types', '#link-repair');
+typesRepairPopup();
 // показ подсказок
 hints('formula');
 hints('problems');
