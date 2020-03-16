@@ -3,16 +3,15 @@
 import Tabs from './tabs';
 import SliderCarousel from './sliderCarousel';
 import Slider from './Slider';
+import SliderPagination from './sliderPagination';
 
 const design = () => {
     let tabSlider;
     const tabsSvg = document.querySelectorAll('.designs-nav__item svg'),
         container = document.getElementById('designs-list'),
-        tabs = container.querySelectorAll('.designs-nav__item'),
-        counter = document.getElementById('designs-counter'),
-        current = counter.querySelector('.slider-counter-content__current'),
-        total = counter.querySelector('.slider-counter-content__total');
-
+        tabs = container.querySelectorAll('.designs-nav__item');
+        
+       
     // инициализация табов
     const designTabs = new Tabs({
         tabsHeader: '#designs-list',
@@ -23,27 +22,26 @@ const design = () => {
 
     let slidersDesign = [];
 
-
-
     for (let i = 0; i < tabs.length; i++) {
-        console.log(document.querySelector(`.designs-slider__style${i + 1}`));
-        slidersDesign = new Slider({
-            container: `.designs-slider__style${i + 1}`,
+        slidersDesign[i] = new SliderPagination({
+            container: `#designs`,
             slides: `.designs-slider__style${i + 1} .designs-slider__style-slide`,
-            next: `#design_right`,
-            prev: `#design_left`,
-            // counter: '#design_left',
-
+            prev: '#design_left',
+            next: '#design_right',
+            pagination: `.designs-slider__style${i + 1}-preview .preview-block__item`,
+            classPag: 'preview_active',
+            inner: '.preview-block__item-inner',
+            counter: `#designs-counter`,
         });
 
-        // slidersDesign[i].init();
+        slidersDesign[i].init();
     }
-    /*
-        const 
-    */
+
+    slidersDesign[0].counterTotal();
+
 
     designTabs.init();
-    total.textContent = tabs.length;
+  
     const response = () => {
         const windowWidth = document.documentElement.clientWidth;
 
@@ -78,10 +76,14 @@ const design = () => {
 
             tabs.forEach((item, index) => {
                 if (item.matches('.active')) {
-                    current.textContent = index + 1;
+                    slidersDesign[index].position = 0;
+                    slidersDesign[index].counterTotal();
+                    slidersDesign[index].showSlide();
+
                 }
             });
         }
+
     });
 
     response();
