@@ -47,7 +47,7 @@ const repairTypesSlider = () => {
 
     containerRepair.addEventListener('click', (event) => {
         let target = event.target;
-        
+
 
         if (target.closest('.repair-types-nav__item')) {
             target = target.closest('.repair-types-nav__item');
@@ -60,7 +60,7 @@ const repairTypesSlider = () => {
                     current.textContent = 1;
                     repairSliders[index].options.position = 0;
                     containerSlider.querySelector('.active-slider').removeAttribute('style');
-                    
+
                 } else {
                     containerSlider.querySelector(`.types-repair${index + 1}`).classList.remove('active-slider');
                 }
@@ -70,7 +70,7 @@ const repairTypesSlider = () => {
         // изменяем счетчик активного слайда
         if (target.closest('.slider-arrow')) {
             tabs.forEach((item, index) => {
-                if (item.matches('.active')){
+                if (item.matches('.active')) {
                     current.textContent = repairSliders[index].options.position + 1;
                 }
             });

@@ -11,7 +11,8 @@ class SliderCarousel {
         infinity = false,
         responsive = [],
         loop = false,
-        activeClass
+        activeClass,
+        responseFunction
     }) {
         if (!main || !wrap) {
             console.warn('slider-carousel: Необходимо ввести 2 свойства(main, wrap)');
@@ -32,6 +33,7 @@ class SliderCarousel {
             maxPosition: this.slides.length - this.slidesToShow,
         };
         this.responsive = responsive;
+    
     }
 
     init() {
