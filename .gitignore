@@ -1,7 +1,7 @@
 /node_modules/
 /src/
-.babelrc
-.jshintrc
-package-lock.json
-package.json
-webpack.config.js
+/\.babelrc
+/\.jshintrc
+/package-lock.json
+/package.json
+/webpack.config.js
