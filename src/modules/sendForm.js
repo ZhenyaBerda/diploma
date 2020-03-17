@@ -59,7 +59,7 @@ const sendForm = () => {
 
     // отлавливаем нажатие на нужные кнопки
     document.body.addEventListener('click', (event) => {
-       
+
         statusMessage.textContent = '';
         const target = event.target;
 
