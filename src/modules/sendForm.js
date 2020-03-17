@@ -30,6 +30,10 @@ const sendForm = () => {
     const showPopupThank = () => {
         const popupThank = document.querySelector('.popup-thank');
         popupThank.style.visibility = 'visible';
+        setTimeout(() => {
+            popupThank.style.visibility = 'hidden';
+        }, 5000);
+
 
         document.body.addEventListener('click', (event) => {
             const target = event.target;
@@ -39,6 +43,7 @@ const sendForm = () => {
                 popupThank.style.visibility = 'hidden';
             }
 
+           
         });
     };
 
