@@ -14,7 +14,6 @@ const accordion = () => {
 
         if (target.closest('.title_block')) {
             const openBlock = accordion.querySelector('.msg-active');
-            console.log(openBlock);
             if (openBlock && !target.matches('.msg-active')) {
                 handlerContent(openBlock);
             }

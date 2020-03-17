@@ -160,7 +160,6 @@ const portfolioSlider = () => {
                 frames = document.querySelectorAll('.portfolio-slider-mobile .portfolio-slider__slide-frame');
             }
 
-            console.log(frames);
             // находим нажатый элемент
             for (let i = 0; i < frames.length; i++) {
                 if (target === frames[i]) {
