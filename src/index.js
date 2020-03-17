@@ -1,5 +1,12 @@
 'use strict';
 
+// полифилы
+import "@babel/polyfill";
+import 'nodelist-foreach-polyfill';
+import elementClosest from 'element-closest';
+elementClosest(window);
+
+
 import toggleMenu from './modules/toggleMenu';
 import togglePhones from './modules/togglePhones';
 import sendForm from './modules/sendForm';
@@ -44,9 +51,7 @@ reviewSlider();
 accordion();
 // слайдер портфолио
 portfolioSlider();
-
 partnerSlider();
-
 scheme();
 design();
 designPopupSlider();

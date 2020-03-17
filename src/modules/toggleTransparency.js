@@ -46,7 +46,6 @@ const toggleTransparency = () => {
 
 
     document.body.addEventListener('click', (event) => {
-        event.preventDefault();
         const target = event.target;
 
         // открываем окно

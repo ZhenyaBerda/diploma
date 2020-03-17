@@ -15,9 +15,9 @@ const typesRepairPopup = () => {
     let newNav = [], newTables = [];
 
     //очищаем окно
-    navItems.forEach(item => item.remove());
-    rows.forEach(item => item.remove());
-    table.forEach(item => item.remove());
+    navItems.forEach(item => item.parentNode.removeChild(item));
+    rows.forEach(item => item.parentNode.removeChild(item));
+    table.forEach(item => item.parentNode.removeChild(item));
 
 
 

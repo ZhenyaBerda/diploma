@@ -58,13 +58,13 @@ const sendForm = () => {
     statusMessage.style.cssText = `color: red; text-align: center;`;
 
     // отлавливаем нажатие на нужные кнопки
-    document.body.addEventListener('submit', (event) => {
-        event.preventDefault();
+    document.body.addEventListener('click', (event) => {
+       
         statusMessage.textContent = '';
         const target = event.target;
 
 
-        if (target.closest('form')) {
+        if (target.closest('.send-button')) {
             event.preventDefault();
 
             const form = target.closest('form');
@@ -90,7 +90,6 @@ const sendForm = () => {
                 // отправляем данные
                 postData(body)
                     .then((response) => {
-
                         if (response.status === 200) {
                             showPopupThank();
                             form.reset();

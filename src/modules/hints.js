@@ -9,45 +9,45 @@ const hints = (block) => {
 
     const responsive = () => {
 
-    if (block === 'formula') {
+        if (block === 'formula') {
 
-        //пришлоась ручками менять стили в верстке, чтобы было нормально отображение всех элементов
-        const item = document.querySelector('.formula-slider');
-        item.style.cssText = 'padding-bottom: 250px';
+            //пришлоась ручками менять стили в верстке, чтобы было нормально отображение всех элементов
+            const item = document.querySelector('.formula-slider');
+            item.style.cssText = 'padding-bottom: 250px';
 
 
-        slider = new SliderCarousel({
-            main: `.${block}-slider-wrap`,
-            wrap: `.${block}-slider`,
-            next: `#${block}-arrow_right`,
-            prev: `#${block}-arrow_left`,
-            slidesToShow: 3,
-            infinity: true,
-            loop: true,
-            activeClass: 'active-item',
-            responsive: [
-                {
-                    breakpoint: 576,
-                    slideToShow: 1
-                }]
-        });
-    } else {
+            slider = new SliderCarousel({
+                main: `.${block}-slider-wrap`,
+                wrap: `.${block}-slider`,
+                next: `#${block}-arrow_right`,
+                prev: `#${block}-arrow_left`,
+                slidesToShow: 3,
+                infinity: true,
+                loop: true,
+                activeClass: 'active-item',
+                responsive: [
+                    {
+                        breakpoint: 576,
+                        slideToShow: 1
+                    }]
+            });
+        } else {
 
-        const items = document.querySelectorAll(`.${block}-slider__slide`);
+            const items = document.querySelectorAll(`.${block}-slider__slide`);
 
-        for (let i = 0; i < items.length; i++) {
-            items[i].classList.add('active-item');
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.add('active-item');
+            }
+
+            slider = new Slider({
+                container: `#${block}`,
+                slides: `.${block}-slider__slide`,
+                next: `#${block}-arrow_right`,
+                prev: `#${block}-arrow_left`,
+            });
         }
-
-        slider = new Slider({
-            container: `#${block}`,
-            slides: `.${block}-slider__slide`,
-            next: `#${block}-arrow_right`,
-            prev: `#${block}-arrow_left`,
-        });
-    }
-    slider.init();
-};
+        slider.init();
+    };
 
     const desktop = () => {
         const addStyle = (hint) => {
@@ -103,7 +103,7 @@ const hints = (block) => {
 
                 hint.removeAttribute('style');
                 if (document.head.querySelector('.hint-style')) {
-                    document.head.querySelector('.hint-style').remove();
+                    document.head.removeChild(document.head.querySelector('.hint-style'));
                 }
             }
 

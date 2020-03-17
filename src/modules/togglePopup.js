@@ -6,7 +6,7 @@ const togglePopup = (popupClass, linkClass) => {
         popupMenu = document.querySelector('.popup-menu');;
 
     document.body.addEventListener('click', (event) => {
-        event.preventDefault();
+      
         const target = event.target;
 
         // открываем окно
