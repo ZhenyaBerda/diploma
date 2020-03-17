@@ -8,8 +8,21 @@ const portfolioSlider = () => {
     const portfolio = document.getElementById('portfolio'),
         sliderDekstop = document.querySelector('.portfolio-slider'),
         sliderMobile = document.querySelector('.portfolio-slider-mobile'),
-        counter = document.querySelector('#portfolio-counter');
-    let frames, currentCount = 0;
+        counter = document.querySelector('#portfolio-counter'),
+        total = counter.querySelector('.slider-counter-content__total'),
+        current = counter.querySelector('.slider-counter-content__current');
+
+    const mobileLeft = document.getElementById('portfolio-arrow-mobile_left'),
+        mobileRight = document.getElementById('portfolio-arrow-mobile_right'),
+        dekstopLeft = document.getElementById('portfolio-arrow_left'),
+        dekstopRight = document.getElementById('portfolio-arrow_right');
+
+    let slides,
+        currentCount = 0,
+        positionSlider = 0,
+        framesLength = 0,
+        startPosition = 0,
+        sliderDekstopVisible = true;
 
     //в разметке добавлен новый div, который обернул слайдер для его нормального отбражения
     //добавляем стили
@@ -39,7 +52,7 @@ const portfolioSlider = () => {
 
     // мобильная версия
     const portfolioSliderMobile = new SliderCarousel({
-        main: '.portfolio-slider-wrap',
+        main: '.small-wrapper__portfolio-mobile',
         wrap: '.portfolio-slider-mobile',
         next: '#portfolio-arrow-mobile_right',
         prev: '#portfolio-arrow-mobile_left',
@@ -55,35 +68,66 @@ const portfolioSlider = () => {
         content: '.popup-portfolio-text'
     });
 
-    portfolioPopupSlider.init();
+    const dekstopSlider = () => {
+        sliderDekstopVisible = true;
+        const slider = document.querySelector(`.portfolio-slider`);
+        slider.removeAttribute('style');
+
+        const widthWindow = document.documentElement.clientWidth;
+        if (widthWindow >= 1025) {
+            startPosition = 2;
+        } else if (widthWindow < 1025 && widthWindow > 900) {
+            startPosition = 1;
+        } else {
+            startPosition = 0;
+        }
+
+        mobileRight.style.display = 'none';
+        mobileLeft.style.display = 'none';
+        dekstopLeft.style.display = 'none';
+        dekstopRight.style.display = 'flex';
+
+
+    };
+
+    const mobileSlider = () => {
+        sliderDekstopVisible = false;
+        const slider = document.querySelector(`.portfolio-slider-mobile`);
+        slider.removeAttribute('style');
+        startPosition = 0;
+
+        mobileRight.style.display = 'flex';
+        mobileLeft.style.display = 'none';
+        dekstopRight.style.display = 'none';
+        dekstopLeft.style.display = 'none';
+
+        current.textContent = startPosition + 1;
+        total.textContent = slides.length;
+    };
 
     // показываем нужный слайдер
     const changeSlider = () => {
         const widthWindow = document.documentElement.clientWidth;
-        if (widthWindow <= 768) {
-            frames = document.querySelectorAll('.portfolio-slider-mobile .portfolio-slider__slide-frame');
+        if (widthWindow <= 750) {
+            slides = document.querySelectorAll('.portfolio-slider-mobile .portfolio-slider__slide-frame');
+
             sliderDekstop.style.display = 'none';
             sliderMobile.style.display = 'flex';
             wrapper.style.display = 'none';
 
-            //переключаем кнопки
-            document.getElementById('portfolio-arrow-mobile_right').style.display = 'flex';
-            document.getElementById('portfolio-arrow-mobile_left').style.display = 'flex';
-            document.getElementById('portfolio-arrow_right').style.display = 'none';
-            document.getElementById('portfolio-arrow_left').style.display = 'none';
+            mobileSlider();
+
 
         } else {
-            frames = document.querySelectorAll('.portfolio-slider .portfolio-slider__slide-frame');
+            slides = document.querySelectorAll('.portfolio-slider .portfolio-slider__slide');
             sliderDekstop.style.display = 'flex';
             sliderMobile.style.display = 'none';
+            wrapper.style.display = 'flex';
 
-            //переключаем кнопки
-            document.getElementById('portfolio-arrow-mobile_right').style.display = 'none';
-            document.getElementById('portfolio-arrow-mobile_left').style.display = 'none';
-            document.getElementById('portfolio-arrow_right').style.display = 'flex';
-            document.getElementById('portfolio-arrow_left').style.display = 'flex';
+            dekstopSlider();
         }
-
+        positionSlider = startPosition;
+        framesLength = slides.length;
     };
 
     changeSlider();
@@ -91,13 +135,32 @@ const portfolioSlider = () => {
     // и включаем слайдеры
     portfolioSliderDekstop.init();
     portfolioSliderMobile.init();
+    portfolioPopupSlider.init();
+    togglePopup('portfolio', '.portfolio-slider__slide-frame');
 
+
+    const handlerDisplay = (elem, display) => {
+        if (sliderDekstopVisible) {
+            elem[0].style.display = display;
+        } else {
+            elem[1].style.display = display;
+        }
+
+    };
 
     portfolio.addEventListener('click', (event) => {
         let target = event.target;
 
         if (target.closest('.portfolio-slider__slide-frame')) {
             target = target.closest('.portfolio-slider__slide-frame');
+            let frames;
+            if (sliderDekstopVisible) {
+                frames = document.querySelectorAll('.portfolio-slider .portfolio-slider__slide-frame');
+            } else {
+                frames = document.querySelectorAll('.portfolio-slider-mobile .portfolio-slider__slide-frame');
+            }
+
+            console.log(frames);
             // находим нажатый элемент
             for (let i = 0; i < frames.length; i++) {
                 if (target === frames[i]) {
@@ -106,11 +169,40 @@ const portfolioSlider = () => {
             }
             portfolioPopupSlider.options.position = currentCount;
             portfolioPopupSlider.showSlide();
-            console.log(portfolioPopupSlider.content)
-            togglePopup('portfolio', '.portfolio-slider__slide-frame');
+
         }
 
-        if (target) {
+        if (target.closest('.portfolio_arrows')) {
+            let elem;
+            if (target.closest('#portfolio-arrow-mobile_right') ||
+                target.closest('#portfolio-arrow_right')) {
+                positionSlider++;
+                if (positionSlider >= framesLength - 1) {
+                    positionSlider = framesLength - 1;
+
+                    elem = [dekstopRight, mobileRight];
+                    handlerDisplay(elem, 'none');
+                }
+                elem = [dekstopLeft, mobileLeft];
+                handlerDisplay(elem, 'flex');
+                current.textContent = `${positionSlider + 1}`;
+            }
+
+            if (target.closest('#portfolio-arrow-mobile_left') ||
+                target.closest('#portfolio-arrow_left')) {
+                positionSlider--;
+
+                if (positionSlider <= startPosition) {
+                    positionSlider = startPosition;
+
+                    elem = [dekstopLeft, mobileLeft];
+                    handlerDisplay(elem, 'none');
+                }
+
+                elem = [dekstopRight, mobileRight];
+                handlerDisplay(elem, 'flex');
+                current.textContent = `${positionSlider + 1}`;
+            }
 
         }
 
