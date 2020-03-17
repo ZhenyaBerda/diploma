@@ -76,7 +76,7 @@ class SliderCarousel {
     }
 
     addStyle() {
-        let style = document.getElementById(`sliderCarousel-style__${this.mainName}`);
+        let style = document.getElementById(`sliderCarousel-style__${this.mainName.slice(1)}`);
         if (!style) {
             style = document.createElement('style');
             style.id = `sliderCarousel-style__${this.mainName.slice(1)}`;
