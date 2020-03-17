@@ -91,8 +91,6 @@ class SliderCarousel {
             margin: auto 0 !important; 
         }
 `;
-
-        console.log(this.wrap, this.options.widthSlide);
         document.head.appendChild(style);
     }
 

@@ -7,12 +7,18 @@ import togglePopup from './togglePopup';
 const portfolioSlider = () => {
     const portfolio = document.getElementById('portfolio'),
         sliderDekstop = document.querySelector('.portfolio-slider'),
-        sliderMobile = document.querySelector('.portfolio-slider-mobile');
+        sliderMobile = document.querySelector('.portfolio-slider-mobile'),
+        counter = document.querySelector('#portfolio-counter');
     let frames, currentCount = 0;
+
+    //в разметке добавлен новый div, который обернул слайдер для его нормального отбражения
+    //добавляем стили
+    const wrapper = document.querySelector('.small-wrapper__portfolio');
+    wrapper.style.cssText = `border-radius: 20px; margin: auto;`;
 
     // объявляем слайдеры
     const portfolioSliderDekstop = new SliderCarousel({
-        main: '.portfolio-slider-wrap',
+        main: '.small-wrapper__portfolio',
         wrap: '.portfolio-slider',
         next: '#portfolio-arrow_right',
         prev: '#portfolio-arrow_left',
@@ -20,11 +26,11 @@ const portfolioSlider = () => {
         infinity: false,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1025,
                 slideToShow: 2
             },
             {
-                breakpoint: 768,
+                breakpoint: 901,
                 slideToShow: 1
             }
         ],
@@ -32,12 +38,12 @@ const portfolioSlider = () => {
     });
 
     // мобильная версия
-    const portfolioSliderMobile = new Slider({
-        container: `#portfolio`,
-        slides: `.portfolio-slider-mobile .portfolio-slider__slide-frame`,
-        next: `#portfolio-arrow-mobile_right`,
-        prev: `#portfolio-arrow-mobile_left`,
-        counter: '#portfolio-counter'
+    const portfolioSliderMobile = new SliderCarousel({
+        main: '.portfolio-slider-wrap',
+        wrap: '.portfolio-slider-mobile',
+        next: '#portfolio-arrow-mobile_right',
+        prev: '#portfolio-arrow-mobile_left',
+        slidesToShow: 1
     });
 
     const portfolioPopupSlider = new Slider({
@@ -58,6 +64,7 @@ const portfolioSlider = () => {
             frames = document.querySelectorAll('.portfolio-slider-mobile .portfolio-slider__slide-frame');
             sliderDekstop.style.display = 'none';
             sliderMobile.style.display = 'flex';
+            wrapper.style.display = 'none';
 
             //переключаем кнопки
             document.getElementById('portfolio-arrow-mobile_right').style.display = 'flex';
@@ -101,6 +108,10 @@ const portfolioSlider = () => {
             portfolioPopupSlider.showSlide();
             console.log(portfolioPopupSlider.content)
             togglePopup('portfolio', '.portfolio-slider__slide-frame');
+        }
+
+        if (target) {
+
         }
 
     });
